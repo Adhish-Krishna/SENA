@@ -61,14 +61,12 @@ The provided `signed_pagerank.py` file rigorously implements the entire paper:
 
 * **Information Propagation Framework**: It accurately simulates the continuous belief updates, discrete attitude conversions, and time-bound recommendation cycles.
 * **SPR Algorithm**: It implements both an iterative array-based version and a fast matrix-vectorised calculation for the $O(N)$ Signed-PageRank algorithm.
-* **Toy Example**: It successfully reproduces the "5-node" toy example from Section 3.3.2 of the paper, demonstrating that the logic perfectly aligns with the authors' hand-calculated steps.
-* **Benchmarks**: It evaluates SPR against the same baselines mentioned in the paper: Unsigned Total degree (P±), Positive degree (P+), Signed Random Walk with Restart (SRWR), and Signed Voter Influence Maximization (SVIM).
 
 ### Running the Code
 
-When you run the script, it will:
-1. Validate the paper's toy example (showing that node 'D' is the correct optimal seed).
-2. Generate an Epinions-like signed scale-free graph.
-3. Track the dynamics of how beliefs evolve over time.
-4. Run hundreds of Monte Carlo simulations to show that SPR finds seed nodes capable of infecting more individuals than all benchmark algorithms.
-5. Save stunning charts to document the superiority of Signed-PageRank over standard methods.
+```bash
+python signed_pagerank.py --dataset synthetic --k 10
+python signed_pagerank.py --dataset epinions --k 20 --max-nodes 3000
+python signed_pagerank.py --dataset slashdot --k 15
+python signed_pagerank.py --dataset wiki --k 10
+```
