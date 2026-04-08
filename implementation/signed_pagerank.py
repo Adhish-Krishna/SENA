@@ -445,7 +445,7 @@ def main():
         help='Max nodes for real datasets (default: 5000)')
     parser.add_argument(
         '--mc-runs', type=int, default=50,
-        help='Monte-Carlo propagation runs (default: 50)')
+        help='Infomation propagation runs (default: 50)')
     parser.add_argument(
         '--max-rounds', type=int, default=25,
         help='Max propagation rounds (default: 25)')
@@ -468,7 +468,7 @@ def main():
     print(f"  Seed nodes : {seeds}")
     print(f"  Time       : {elapsed * 1000:.1f} ms")
 
-    # ── Evaluate via Monte-Carlo propagation ─────────────────────
+    # ── Running Information Propagation ─────────────────────
     print(f"\n[3/3] Evaluating influence spread "
           f"({args.mc_runs} MC runs, max {args.max_rounds} rounds)...")
     infected_counts = []
