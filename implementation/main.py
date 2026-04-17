@@ -132,10 +132,6 @@ def BUpdate(G: nx.DiGraph, X_t: np.ndarray, A_t: np.ndarray, L: np.ndarray, S_t:
     return X_t1, A_t1
 
 
-def updateBelief(G: nx.DiGraph, X: np.ndarray, A: np.ndarray, S: set, t: int):
-    return BUpdate(G, X, A, None, S)
-
-
 # Algorithm 3 - SPR: Signed-PageRank
 def SPR(G: nx.DiGraph, X_0: np.ndarray, L: np.ndarray, k: int, d: float = 0.85, max_iter: int = 200):
     """
@@ -228,12 +224,6 @@ def InPro(G: nx.DiGraph, k: int, X_t: np.ndarray, A_t: np.ndarray, L: np.ndarray
                 if random.random() < p:
                     A_t1[i] = 0
 
-            for i, v_i in enumerate(nodes):
-                if A_t1[i] == 0:
-                    _, T_u_i = _cycle_bounds(T, v_i, i)
-                    if t > T_u_i:
-                        A_t1[i] = 0
-
             X_t = X_t1
             A_t = A_t1
             t += 1
@@ -299,7 +289,6 @@ def main():
     G, X_0, A_0, L, T, k = _build_epinions_dataset(max_nodes=args.max_nodes, k=args.k)
     X_t, A_t, S_0, infected_count = InPro(G, k, X_0, A_0, L, T, 0)
 
-    print('dataset = epinions')
     print('nodes =', G.number_of_nodes(), 'edges =', G.number_of_edges())
     print('S_0 =', S_0)
     print('X_final =', np.round(X_t, 6).tolist())
